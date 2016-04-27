@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="angular.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css"  href="bootstrap.min.css" >
+</head>
+<body>
+    <div id="page-wrap">
+        <div class="row">
+            <div class="col-xs-3">
+                <img src="image/avartar.png" height="220" width="240">
+            </div>
+            <div class="col-xs-9">
+                <div class="row">
+                    <span class="fullname">Ngô Chí Hải</span>
+                </div>
 
+                <div class="row">
+                    <span class="title">Student at the University of Sciences</span>  
+                </div>
+
+                <div class="row">
+                    <span>Viet Nam</span>
+                    <span>|</span>
+                    <span>Mobile Developer</span>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <span class="edit-tools">Mobile Phone</span>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="edit-tools-text">001697921700</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-2">
+                        <span class="edit-tools">Email</span>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="edit-tools-text">nchai.ctt@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-2">
+                        <span class="edit-tools">Education</span>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="edit-tools-text">Doc Binh Kieu High School</span>
+                        <br>
+                        <span class="edit-tools-text">VNUHCM - University of Science</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row contact">
+            <div class="col-xs-10">
+                <img src="image/linkedin_icon.png" height="20" width="20">
+                <a href="https://vn.linkedin.com/in/chi-hai-ngo-295705116">https://vn.linkedin.com/in/chi-hai-ngo-295705116</a>
+            </div>
+            <div class="col-xs-2">
+                <a href="#">Contact info</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="page-Background">
+        <!-- Background -->
+        <div class="row" >
+            <h1 id="h_Background">Background</h1>
+            <!-- Summary -->
+            <div class="text-background" ng-controller="myController">
+                <h2 id="h2_Background"> <img src="image/summary.png"> Summary</h2>
+                <p ng-repeat="summary in dataSummary">{{summary.text}}</p>
+            </div>
+            <hr>
+            
+            <!-- Experience -->
+            <div class="text-background" ng-controller="myController">
+                <h2 id="h2_Background"> <img src="image/experience.png">Experience</h2>
+                
+                <h3 id="h3_title" ng-repeat="experience in dataExperience">{{experience.title}}</h3>
+                <p ng-repeat="experience in dataExperience">{{experience.date}}</p>
+                <p ng-repeat="experience in dataExperience">{{experience.description}}</p>
+            </div>
+            <hr>
+            <!-- Project -->
+            <div class="text-background" ng-controller="myController">
+                <h2 id="h2_Background"> <img src="image/project.png"> Project</h2>
+                <h3 id="h3_title" ng-repeat="project in dataProject">{{project.title}}</h3>
+                <p ng-repeat="project in dataProject">{{project.date}}</p>
+                <p ng-repeat="project in dataProject">{{project.description}}</p>
+            </div>
+            <hr>
+            <!-- Skill -->
+            <div class="text-background" ng-controller="myController">
+                <h2 id="h2_Background"> <img src="image/skills.png"> Skills</h2>
+                <p id="p_skill" ng-repeat="skill in dataSkill">{{skill.text}}</p>
+            </div>
+            <hr>
+            <!-- Education -->
+            <div class="text-background" ng-controller="myController">
+                <h2 id="h2_Background"> <img src="image/education.png"> Education</h2>
+                <h3 id="h3_title" ng-repeat="education in dataEducation">{{education.title}}</h3>
+                <p ng-repeat="education in dataEducation">{{education.date}}</p>
+            </div>
+        </div>
+    </div>
+    
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  
+  <script src="app.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>

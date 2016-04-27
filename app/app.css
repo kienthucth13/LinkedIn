@@ -1,0 +1,110 @@
+html,
+
+/*------------------------------------*/
+/*Body*/
+/*------------------------------------*/
+section{
+    display: block;
+}
+
+.row{
+
+}
+
+body{
+    background-image: url(image/background.png);
+}
+
+#page-wrap {
+     width: 1100px !important;
+     margin: 0 auto;
+    background-color: white;
+}
+
+#page-Background {
+    width: 1100px !important;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: white;
+    
+}
+
+#page-Background p{
+    font-size: 13px;
+}
+
+#h_Background{
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    height: 35px;
+    width: 120px;
+    background: rgb(51, 51, 51);
+    border: 0px none rgb(255, 255, 255);
+    font: bold normal 13px / 17px Arial, sans-serif;
+    padding: 7.5px 20px;
+    margin-left: 15px;
+    margin-top: 0px;
+}
+
+#h2_Background{
+    font-size: 16px;
+}
+
+#h3_title{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.text-background{
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+#p_skill{
+    color: #333;
+    cursor: default;
+    display: block;
+    height: 23.6364px;
+    position: relative;
+    white-space: nowrap;
+    width: 105.455px;
+    background: rgb(240, 240, 240);
+    font: 13px / 24px Arial, sans-serif;
+    padding: 0px 13px;
+    text-align: center;
+    
+}
+/*------------------------------------*/
+/*My Infomation*/
+/*------------------------------------*/
+
+.fullname{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.title{
+    color: #666;
+    font-size: 18px;
+    padding-top: 1px;
+}
+
+.locality{
+    color: #66696a;
+    font-size: 13px;
+}
+
+.edit-tools{
+    color: #999;
+    font-size: 13px;
+    margin-left: -15px;
+}
+
+.edit-tools-text{
+    color: #333;
+    font-size: 12px;
+}
+
+.contact{
+    padding: 15px;
+}
