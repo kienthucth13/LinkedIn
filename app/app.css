@@ -67,13 +67,14 @@ body{
     height: 23.6364px;
     position: relative;
     white-space: nowrap;
-    width: 105.455px;
+    width: 150px;
     background: rgb(240, 240, 240);
     font: 13px / 24px Arial, sans-serif;
     padding: 0px 13px;
     text-align: center;
-    
+    margin-left: 20px;
 }
+
 /*------------------------------------*/
 /*My Infomation*/
 /*------------------------------------*/

@@ -8,28 +8,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="app.css">
     <script src="angular.min.js"></script>
-    
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css"  href="bootstrap.min.css" >
 </head>
-<body>
-    <div id="page-wrap">
+<body  ng-controller="myController">
+    <div id="page-wrap" ng-mouseleave="mouseLeaveProfile()" ng-mouseover="mouseOverProfile()">
         <div class="row">
             <div class="col-xs-3">
                 <img src="image/avartar.png" height="220" width="240">
             </div>
             <div class="col-xs-9">
                 <div class="row">
-                    <span class="fullname">Ngô Chí Hải</span>
+                    <span class="fullname">{{dataProfile.name}}</span>
+                    <button ng-class="isVisibleProfile" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalName">Edit</button>
                 </div>
 
                 <div class="row">
-                    <span class="title">Student at the University of Sciences</span>  
+                    <span class="title">{{dataProfile.title}}</span>  
+                    <button ng-class="isVisibleProfile" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalTitle">Edit</button>
                 </div>
 
                 <div class="row">
-                    <span>Viet Nam</span>
+                    <span>{{dataProfile.country}}</span>
                     <span>|</span>
-                    <span>Mobile Developer</span>
+                    <span>{{dataProfile.major}}</span>
+                    <button ng-class="isVisibleProfile" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalCandM">Edit</button>
                 </div>
                 <br>
                 <div class="row">
@@ -37,7 +41,7 @@
                         <span class="edit-tools">Mobile Phone</span>
                     </div>
                     <div class="col-xs-6">
-                        <span class="edit-tools-text">001697921700</span>
+                        <span class="edit-tools-text">{{dataProfile.mobile}}</span>
                     </div>
                 </div>
 
@@ -45,8 +49,11 @@
                     <div class="col-xs-2">
                         <span class="edit-tools">Email</span>
                     </div>
-                    <div class="col-xs-6">
-                        <span class="edit-tools-text">nchai.ctt@gmail.com</span>
+                    <div class="col-xs-3">
+                        <span class="edit-tools-text">{{dataProfile.email}}</span>
+                    </div>
+                    <div class="col-xs-1">
+                        <button ng-class="isVisibleProfile" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalContact">Edit</button>
                     </div>
                 </div>
 
@@ -55,9 +62,7 @@
                         <span class="edit-tools">Education</span>
                     </div>
                     <div class="col-xs-6">
-                        <span class="edit-tools-text">Doc Binh Kieu High School</span>
-                        <br>
-                        <span class="edit-tools-text">VNUHCM - University of Science</span>
+                        <span class="edit-tools-text">{{dataProfile.education}}</span>
                     </div>
                 </div>
             </div>
@@ -66,10 +71,8 @@
         <div class="row contact">
             <div class="col-xs-10">
                 <img src="image/linkedin_icon.png" height="20" width="20">
-                <a href="https://vn.linkedin.com/in/chi-hai-ngo-295705116">https://vn.linkedin.com/in/chi-hai-ngo-295705116</a>
-            </div>
-            <div class="col-xs-2">
-                <a href="#">Contact info</a>
+                <a href="{{dataProfile.linkedin}}">{{dataProfile.linkedin}}</a>
+                <button ng-class="isVisibleProfile" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalLinkedin">Edit</button>
             </div>
         </div>
     </div>
@@ -79,47 +82,255 @@
         <div class="row" >
             <h1 id="h_Background">Background</h1>
             <!-- Summary -->
-            <div class="text-background" ng-controller="myController">
-                <h2 id="h2_Background"> <img src="image/summary.png"> Summary</h2>
-                <p ng-repeat="summary in dataSummary">{{summary.text}}</p>
+            <div class="text-background" ng-mouseleave="mouseLeaveSummary()" ng-mouseover="mouseOverSummary()">
+                <h2 id="h2_Background"> <img src="image/summary.png"> Summary <button ng-class="isVisibleSummary" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalSummary">Edit</button></h2>
+                <p >{{dataSummary.text}}</p>
             </div>
             <hr>
             
             <!-- Experience -->
-            <div class="text-background" ng-controller="myController">
-                <h2 id="h2_Background"> <img src="image/experience.png">Experience</h2>
-                
-                <h3 id="h3_title" ng-repeat="experience in dataExperience">{{experience.title}}</h3>
-                <p ng-repeat="experience in dataExperience">{{experience.date}}</p>
-                <p ng-repeat="experience in dataExperience">{{experience.description}}</p>
+            <div class="text-background" ng-mouseleave="mouseLeaveExperience()" ng-mouseover="mouseOverExperience()" >
+                <h2 id="h2_Background"> <img src="image/experience.png">Experience <button ng-class="isVisibleExperience" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalExperience">Edit</button></h2>
+                <div ng-repeat="experience in dataExperience">
+                    <h3 id="h3_title">{{experience.title}}</h3>
+                    <p>{{experience.date}}</p>
+                    <p>{{experience.description}}</p>
+                </div>
             </div>
             <hr>
             <!-- Project -->
-            <div class="text-background" ng-controller="myController">
-                <h2 id="h2_Background"> <img src="image/project.png"> Project</h2>
-                <h3 id="h3_title" ng-repeat="project in dataProject">{{project.title}}</h3>
-                <p ng-repeat="project in dataProject">{{project.date}}</p>
-                <p ng-repeat="project in dataProject">{{project.description}}</p>
+            <div class="text-background" ng-mouseleave="mouseLeaveProject()" ng-mouseover="mouseOverProject()">
+                <h2 id="h2_Background"> <img src="image/project.png"> Project <button ng-class="isVisibleProject" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalProject">Edit</button></h2>
+                <div ng-repeat="project in dataProject">
+                    <h3 id="h3_title">{{project.title}}</h3>
+                    <p>{{project.date}}</p>
+                    <p>{{project.description}}</p>
+                </div>
             </div>
             <hr>
             <!-- Skill -->
-            <div class="text-background" ng-controller="myController">
-                <h2 id="h2_Background"> <img src="image/skills.png"> Skills</h2>
+            <div class="text-background" ng-mouseleave="mouseLeaveSkill()" ng-mouseover="mouseOverSkill()">
+                <h2 id="h2_Background"> <img src="image/skills.png"> Skills <button ng-class="isVisibleSkill" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalSkill">Edit</button></h2>
                 <p id="p_skill" ng-repeat="skill in dataSkill">{{skill.text}}</p>
             </div>
             <hr>
             <!-- Education -->
-            <div class="text-background" ng-controller="myController">
-                <h2 id="h2_Background"> <img src="image/education.png"> Education</h2>
-                <h3 id="h3_title" ng-repeat="education in dataEducation">{{education.title}}</h3>
-                <p ng-repeat="education in dataEducation">{{education.date}}</p>
+            <div class="text-background" ng-mouseleave="mouseLeaveEducation()" ng-mouseover="mouseOverEducation()">
+                <h2 id="h2_Background"> <img src="image/education.png"> Education <button ng-class="isVisibleEducation" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalEducation">Edit</button></h2>
+                <div ng-repeat="education in dataEducation">
+                    <h3 id="h3_title">{{education.title}}</h3>
+                    <p>{{education.date}}</p>
+                </div>
             </div>
         </div>
     </div>
     
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
+    <!-- Bootstrap Vertical Form-->
+    <!-- Edit Name-->
+    <div id="myModalName" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Name</label>
+                    <input ng-model="dataProfile.name" class="form-control" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+                        
+    <!-- Edit Title-->
+    <div id="myModalTitle" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Title</label>
+                    <input ng-model="dataProfile.title" class="form-control" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Country and Major-->
+    <div id="myModalCandM" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Country</label>
+                    <input ng-model="dataProfile.country" class="form-control" type="text">
+                    <label>Major</label>
+                    <input ng-model="dataProfile.major" class="form-control" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Contact-->
+    <div id="myModalContact" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Mobile Phone</label>
+                    <input ng-model="dataProfile.mobile" class="form-control" type="text">
+                    <label>Email</label>
+                    <input ng-model="dataProfile.email" class="form-control" type="text">
+                    <label>Education</label>
+                    <input ng-model="dataProfile.education" class="form-control" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Linkedin-->
+    <div id="myModalLinkedin" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Addpress</label>
+                    <input ng-model="dataProfile.linkedin" class="form-control" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Summary-->
+    <div id="myModalSummary" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Summary</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Content</label>
+                    <textarea ng-model="dataSummary.text" class="form-control" rows="6"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Experience-->
+    <div id="myModalExperience" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Experience</h4>
+                </div>
+                <div class="modal-body" ng-repeat="experience in dataExperience">
+                    <label>Title <button type="button" class="btn btn-danger btn-xs" ng-click="deleteExperience(experience)">X</button></label>
+                    <input ng-model="experience.title" class="form-control" type="text">
+                    <label>Time Period</label>
+                    <input ng-model="experience.date" class="form-control" type="text">
+                    <label>Description</label>
+                    <textarea ng-model="experience.description" class="form-control" rows="6"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="addExperience()">Add Experience</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Edit Project-->
+    <div id="myModalProject" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Project</h4>
+                </div>
+                <div class="modal-body" ng-repeat="project in dataProject">
+                    <label>Title <button type="button" class="btn btn-danger btn-xs" ng-click="deleteProject(project)">X</button></label>
+                    <input ng-model="project.title" class="form-control" type="text">
+                    <label>Time Period</label>
+                    <input ng-model="project.date" class="form-control" type="text">
+                    <label>Description</label>
+                    <textarea ng-model="project.description" class="form-control" rows="6"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="addProject()">Add Project</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Skill-->
+    <div id="myModalSkill" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Skill</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Skill</label>
+                    <div ng-repeat="skill in dataSkill">
+                        <div class="row">
+                            <input ng-model="skill.text" class="col-xs-5 form-control" id="p_skill" type="text">
+                            <div class="col-xs-1"></div>
+                            <button type="button" class="btn btn-danger btn-xs col-xs-1" ng-click="deleteSkill(skill)">X</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="addSkill()">Add Skill</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Education-->
+    <div id="myModalEducation" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Education</h4>
+                </div>
+                <div class="modal-body" ng-repeat="education in dataEducation">
+                    <label>Scholl <button type="button" class="btn btn-danger btn-xs" ng-click="deleteEducation(education)">X</button></label>
+                    <input ng-model="education.title" class="form-control" type="text">
+                    <label>Time Period</label>
+                    <input ng-model="education.date" class="form-control" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="addEducation()">Add Education</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
   
   <script src="app.js"></script>
   <script src="components/version/version.js"></script>
